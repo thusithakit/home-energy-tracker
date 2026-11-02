@@ -1,0 +1,189 @@
+services:
+  mysql:
+    image: mysql:8.3.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: home_energy_tracker
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db-data:/var/lib/mysql
+      - db-data:/var/log/mysql
+
+  kafka:
+    container_name: kafka
+    image: apache/kafka:latest
+    ports:
+      - "9092:9092"  # Internal listener (Docker network)
+      - "9094:9094"  # External listener (host machine)
+
+    environment:
+      ############################################
+      # KRaft Metadata & Node Identity
+      ############################################
+      # Unique ID for this Kafka node
+      KAFKA_NODE_ID: 1
+      # Unique Kafka cluster identifier (required for KRaft mode)
+      KAFKA_CLUSTER_ID: 'energy-tracker-cluster-1'
+      # Node roles — this instance will act as BOTH a broker and controller
+      KAFKA_PROCESS_ROLES: 'broker,controller'
+
+      ############################################
+      # Controller Quorum Configuration (Raft)
+      ############################################
+      # List of controller nodes that form the Raft quorum
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@kafka:9093'
+      # Listener name used by controllers for internal Raft communication
+      KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+
+      ############################################
+      # Network Listeners (Internal, External & Controller)
+      ############################################
+      # Define all listener endpoints for this Kafka node
+      KAFKA_LISTENERS: >
+        PLAINTEXT://0.0.0.0:9092,
+        EXTERNAL://0.0.0.0:9094,
+        CONTROLLER://0.0.0.0:9093
+
+      # What each listener advertises to connecting clients
+      # Internal (Docker containers): kafka:9092
+      # External (host machine): localhost:9094
+      KAFKA_ADVERTISED_LISTENERS: >
+        PLAINTEXT://kafka:9092,
+        EXTERNAL://localhost:9094
+
+      # Maps listener names to their security protocols
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: >
+        CONTROLLER:PLAINTEXT,
+        PLAINTEXT:PLAINTEXT,
+        EXTERNAL:PLAINTEXT
+
+      # Which listener brokers should use for internal communication
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'PLAINTEXT'
+
+      ############################################
+      #  Single-Node Cluster Safety Settings
+      #    (because replication >1 would break)
+      ############################################
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+
+      ############################################
+      #  Broker Defaults & Quality-of-Life Settings
+      ############################################
+      # Speed up consumer group startup
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      # Auto-create topics if they don't already exist
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+      # Default number of partitions per topic
+      KAFKA_NUM_PARTITIONS: 1
+
+    volumes:
+      - ./docker/kafka_data:/var/lib/kafka/data
+
+  kafka-ui:
+    container_name: kafka-ui
+    image: ghcr.io/kafbat/kafka-ui:latest
+    ports:
+      - "8070:8080"
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092  # Use internal Docker network name
+      DYNAMIC_CONFIG_ENABLED: 'true'
+    restart: unless-stopped
+
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    ports:
+      - "8072:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=admin123
+      - DOCKER_INFLUXDB_INIT_ORG=leetjourney
+      - DOCKER_INFLUXDB_INIT_BUCKET=usage-bucket
+      - DOCKER_INFLUXDB_INIT_RETENTION=1w
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-token
+    volumes:
+      - ./influxdb_data:/var/lib/influxdb2
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: mailpit
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
+  keycloak-db:
+    container_name: keycloak-mysql
+    image: mysql:8.3.0
+    volumes:
+      - ./volume-data/mysql_keycloak_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: password
+
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:24.0.1
+    command: [ "start-dev", "--import-realm" ]
+    environment:
+      DB_VENDOR: MYSQL
+      DB_ADDR: mysql
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8091:8080"
+    volumes:
+      - ./docker/keycloak/realms/:/opt/keycloak/data/import/
+    depends_on:
+      - keycloak-db
+
+  prometheus:
+    image: prom/prometheus:v3.1.0
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=5d
+      - --web.enable-lifecycle
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:11.4.0
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_SERVER_ROOT_URL: http://localhost:3000
+    volumes:
+      - ./docker/grafana/provisioning:/etc/grafana/provisioning:ro
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+volumes:
+  db-data:
+  kafka-data:
+  grafana-data:
