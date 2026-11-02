@@ -89,7 +89,7 @@ Kubernetes is **not** part of this repo; deploying to K8s would be a natural ext
 ### Clone the repository
 
 ```bash
-git clone git@github.com:leetjourney/home-energy-tracker.git
+git clone https://github.com/thusithakit/home-energy-tracker.git
 cd home-energy-tracker
 ```
 
@@ -170,38 +170,3 @@ Service-specific OpenAPI is linked from the gateway’s Swagger UI configuration
 - **Circuit breaker** state can be surfaced through Actuator health where enabled (see gateway `application.properties`).  
 
 Use Grafana for dashboards and Prometheus for ad-hoc queries and alerting rules as you extend the deployment.
-
----
-
-## Future improvements
-
-- **End-to-end tests** — Contract or black-box tests across gateway → services → Kafka → DB  
-- **CI/CD** — Build matrix per service, image publish, Compose or K8s smoke tests  
-- **Frontend dashboard** — SPA for devices, live usage charts, alert history  
-- **AuthZ hardening** — Fine-grained scopes, service-to-service tokens, policy engine  
-- **Kubernetes** — Helm charts, external secrets, HPA, and Kafka/Influx operators  
-- **Centralized config** — Spring Cloud Config or external secret stores for non-dev environments  
-
----
-
-## Learning resources
-
-### YouTube playlist
-
-Step-by-step build and concepts for this style of system:  
-[https://www.youtube.com/playlist?list=PLJce2FcDFtxL94MVNXRzIM0WR2qNyz5i_](https://www.youtube.com/playlist?list=PLJce2FcDFtxL94MVNXRzIM0WR2qNyz5i_)
-
-### Support the project
-
-[https://buymeacoffee.com/leetjourney](https://buymeacoffee.com/leetjourney)
-
----
-
-## Additional documentation
-
-- **[AGENTS.md](AGENTS.md)** — Quick runbook for AI agents and operators (ports, topics, curl examples).  
-- Per-service **`HELP.md`** — Module-specific notes where present.  
-
----
-
-*Home Energy Tracker — a portfolio-grade Spring microservices example for learning production-style patterns without oversimplifying the moving parts.*
