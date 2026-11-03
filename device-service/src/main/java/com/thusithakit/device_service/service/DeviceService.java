@@ -1,9 +1,9 @@
-package com.leetjouney.device_service.service;
+package com.thusithakit.device_service.service;
 
-import com.leetjouney.device_service.dto.DeviceDto;
-import com.leetjouney.device_service.entity.Device;
-import com.leetjouney.device_service.exception.DeviceNotFoundException;
-import com.leetjouney.device_service.repository.DeviceRepository;
+import com.thusithakit.device_service.dto.DeviceDto;
+import com.thusithakit.device_service.entity.Device;
+import com.thusithakit.device_service.exception.DeviceNotFoundException;
+import com.thusithakit.device_service.repository.DeviceRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

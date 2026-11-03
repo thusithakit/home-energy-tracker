@@ -1,4 +1,4 @@
-package com.leetjouney.device_service.model;
+package com.thusithakit.device_service.model;
 
 public enum DeviceType {
     SPEAKER,

@@ -1,4 +1,4 @@
-package com.leetjouney.device_service.config;
+package com.thusithakit.device_service.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;

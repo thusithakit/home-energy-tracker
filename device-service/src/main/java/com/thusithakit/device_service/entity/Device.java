@@ -1,6 +1,6 @@
-package com.leetjouney.device_service.entity;
+package com.thusithakit.device_service.entity;
 
-import com.leetjouney.device_service.model.DeviceType;
+import com.thusithakit.device_service.model.DeviceType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

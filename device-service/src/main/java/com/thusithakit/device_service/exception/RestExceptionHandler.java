@@ -1,4 +1,4 @@
-package com.leetjouney.device_service.exception;
+package com.thusithakit.device_service.exception;
 
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;

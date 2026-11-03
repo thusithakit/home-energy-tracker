@@ -1,6 +1,6 @@
-package com.leetjouney.device_service.dto;
+package com.thusithakit.device_service.dto;
 
-import com.leetjouney.device_service.model.DeviceType;
+import com.thusithakit.device_service.model.DeviceType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

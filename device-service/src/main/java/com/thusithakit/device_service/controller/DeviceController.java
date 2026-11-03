@@ -1,7 +1,7 @@
-package com.leetjouney.device_service.controller;
+package com.thusithakit.device_service.controller;
 
-import com.leetjouney.device_service.dto.DeviceDto;
-import com.leetjouney.device_service.service.DeviceService;
+import com.thusithakit.device_service.dto.DeviceDto;
+import com.thusithakit.device_service.service.DeviceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
