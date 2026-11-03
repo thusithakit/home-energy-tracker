@@ -1,7 +1,7 @@
-package com.leetjourney.alert_service.service;
+package com.thusithakit.alert_service.service;
 
-import com.leetjourney.alert_service.entity.Alert;
-import com.leetjourney.alert_service.repository.AlertRepository;
+import com.thusithakit.alert_service.entity.Alert;
+import com.thusithakit.alert_service.repository.AlertRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -29,7 +29,7 @@ public class EmailService {
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
-        message.setFrom("noreply@leetjourney.com");
+        message.setFrom("noreply@thusithakit.com");
         message.setSubject(subject);
         message.setText(body);
 

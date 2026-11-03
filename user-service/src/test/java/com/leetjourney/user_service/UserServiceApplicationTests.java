@@ -1,7 +1,7 @@
-package com.leetjourney.user_service;
+package com.thusithakit.user_service;
 
-import com.leetjourney.user_service.entity.User;
-import com.leetjourney.user_service.repository.UserRepository;
+import com.thusithakit.user_service.entity.User;
+import com.thusithakit.user_service.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,9 @@
-package com.leetjourney.user_service.integration;
+package com.thusithakit.user_service.integration;
 
-import com.leetjourney.user_service.dto.UserDto;
-import com.leetjourney.user_service.entity.User;
-import com.leetjourney.user_service.repository.UserRepository;
-import com.leetjourney.user_service.testsupport.MySqlTestcontainersBase;
+import com.thusithakit.user_service.dto.UserDto;
+import com.thusithakit.user_service.entity.User;
+import com.thusithakit.user_service.repository.UserRepository;
+import com.thusithakit.user_service.testsupport.MySqlTestcontainersBase;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
@@ -37,7 +37,7 @@ public class UserServiceIntegrationTest extends MySqlTestcontainersBase {
         UserDto request = UserDto.builder()
                 .name("Leet")
                 .surname("Journey")
-                .email("leetjourney@gmail.com")
+                .email("thusithakit@gmail.com")
                 .address("123 Coding St")
                 .alerting(true)
                 .energyAlertingThreshold(2000.0)
@@ -52,7 +52,7 @@ public class UserServiceIntegrationTest extends MySqlTestcontainersBase {
         assertThat(response.getBody().getName()).isEqualTo("Leet");
         assertThat(response.getBody().getSurname()).isEqualTo("Journey");
         assertThat(response.getBody().getAddress()).isEqualTo("123 Coding St");
-        assertThat(response.getBody().getEmail()).isEqualTo("leetjourney@gmail.com");
+        assertThat(response.getBody().getEmail()).isEqualTo("thusithakit@gmail.com");
         assertThat(response.getBody().isAlerting()).isTrue();
         assertThat(response.getBody().getEnergyAlertingThreshold()).isEqualTo(2000.0);
 
@@ -62,7 +62,7 @@ public class UserServiceIntegrationTest extends MySqlTestcontainersBase {
 
         assertThat(loaded.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(loaded.getBody()).isNotNull();
-        assertThat(loaded.getBody().getEmail()).isEqualTo("leetjourney@gmail.com");
+        assertThat(loaded.getBody().getEmail()).isEqualTo("thusithakit@gmail.com");
     }
 
     @Test

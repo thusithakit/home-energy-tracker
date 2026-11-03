@@ -1,4 +1,4 @@
-package com.leetjourney.user_service.testsupport;
+package com.thusithakit.user_service.testsupport;
 
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.testcontainers.junit.jupiter.Container;

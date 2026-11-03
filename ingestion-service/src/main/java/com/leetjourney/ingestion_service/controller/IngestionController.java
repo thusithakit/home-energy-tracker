@@ -1,7 +1,7 @@
-package com.leetjourney.ingestion_service.controller;
+package com.thusithakit.ingestion_service.controller;
 
-import com.leetjourney.ingestion_service.dto.EnergyUsageDto;
-import com.leetjourney.ingestion_service.service.IngestionService;
+import com.thusithakit.ingestion_service.dto.EnergyUsageDto;
+import com.thusithakit.ingestion_service.service.IngestionService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

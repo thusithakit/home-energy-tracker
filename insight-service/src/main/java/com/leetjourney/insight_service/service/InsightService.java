@@ -1,9 +1,9 @@
-package com.leetjourney.insight_service.service;
+package com.thusithakit.insight_service.service;
 
-import com.leetjourney.insight_service.client.UsageClient;
-import com.leetjourney.insight_service.dto.DeviceDto;
-import com.leetjourney.insight_service.dto.InsightDto;
-import com.leetjourney.insight_service.dto.UsageDto;
+import com.thusithakit.insight_service.client.UsageClient;
+import com.thusithakit.insight_service.dto.DeviceDto;
+import com.thusithakit.insight_service.dto.InsightDto;
+import com.thusithakit.insight_service.dto.UsageDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;

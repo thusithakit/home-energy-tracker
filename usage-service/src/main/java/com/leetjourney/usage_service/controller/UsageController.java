@@ -1,7 +1,7 @@
-package com.leetjourney.usage_service.controller;
+package com.thusithakit.usage_service.controller;
 
-import com.leetjourney.usage_service.dto.UsageDto;
-import com.leetjourney.usage_service.service.UsageService;
+import com.thusithakit.usage_service.dto.UsageDto;
+import com.thusithakit.usage_service.service.UsageService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

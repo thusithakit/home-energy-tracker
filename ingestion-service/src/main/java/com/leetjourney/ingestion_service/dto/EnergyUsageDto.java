@@ -1,4 +1,4 @@
-package com.leetjourney.ingestion_service.dto;
+package com.thusithakit.ingestion_service.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.leetjourney.user_service.aspect;
+package com.thusithakit.user_service.aspect;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class ExecutionTimeAspect {
 
-    @Pointcut("execution(* com.leetjourney.user_service.controller.*.*(..))")
+    @Pointcut("execution(* com.thusithakit.user_service.controller.*.*(..))")
     public void controllerMethods() {}
 
     @Around("controllerMethods()")

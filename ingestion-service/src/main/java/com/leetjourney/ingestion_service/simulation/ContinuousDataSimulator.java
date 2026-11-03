@@ -1,6 +1,6 @@
-package com.leetjourney.ingestion_service.simulation;
+package com.thusithakit.ingestion_service.simulation;
 
-import com.leetjourney.ingestion_service.dto.EnergyUsageDto;
+import com.thusithakit.ingestion_service.dto.EnergyUsageDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;

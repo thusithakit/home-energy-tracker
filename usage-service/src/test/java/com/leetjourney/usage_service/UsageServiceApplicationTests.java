@@ -1,4 +1,4 @@
-package com.leetjourney.usage_service;
+package com.thusithakit.usage_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
-package com.leetjourney.user_service.controller;
+package com.thusithakit.user_service.controller;
 
-import com.leetjourney.user_service.dto.UserDto;
-import com.leetjourney.user_service.service.UserService;
+import com.thusithakit.user_service.dto.UserDto;
+import com.thusithakit.user_service.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

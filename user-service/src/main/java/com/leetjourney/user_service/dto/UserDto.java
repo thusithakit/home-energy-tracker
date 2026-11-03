@@ -1,4 +1,4 @@
-package com.leetjourney.user_service.dto;
+package com.thusithakit.user_service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

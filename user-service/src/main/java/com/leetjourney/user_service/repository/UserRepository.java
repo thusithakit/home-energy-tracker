@@ -1,6 +1,6 @@
-package com.leetjourney.user_service.repository;
+package com.thusithakit.user_service.repository;
 
-import com.leetjourney.user_service.entity.User;
+import com.thusithakit.user_service.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

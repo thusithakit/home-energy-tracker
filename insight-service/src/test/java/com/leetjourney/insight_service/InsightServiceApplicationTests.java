@@ -1,4 +1,4 @@
-package com.leetjourney.insight_service;
+package com.thusithakit.insight_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

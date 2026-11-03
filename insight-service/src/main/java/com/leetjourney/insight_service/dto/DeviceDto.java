@@ -1,4 +1,4 @@
-package com.leetjourney.insight_service.dto;
+package com.thusithakit.insight_service.dto;
 
 import lombok.Builder;
 

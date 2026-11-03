@@ -1,4 +1,4 @@
-package com.leetjourney.alert_service;
+package com.thusithakit.alert_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

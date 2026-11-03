@@ -1,4 +1,4 @@
-package com.leetjourney.usage_service.config;
+package com.thusithakit.usage_service.config;
 
 import com.influxdb.client.InfluxDBClient;
 import com.influxdb.client.InfluxDBClientFactory;

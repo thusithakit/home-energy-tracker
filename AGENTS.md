@@ -24,13 +24,13 @@ Architecture & key components
 
 Critical integration points & dataflows (explicit)
 - Ingestion → Kafka → Usage → InfluxDB & Alerts → Alerting consumer
-  - Topic `energy-usage`: produced by `ingestion-service` (`ingestion-service/src/main/java/com/leetjourney/ingestion_service/service/IngestionService.java`) and consumed by `usage-service` (`usage-service/src/main/java/com/leetjourney/usage_service/service/UsageService.java`).
-  - Topic `energy-alerts`: produced by `usage-service` (aggregation/threshold logic) and consumed by `alert-service` (`alert-service/src/main/java/com/leetjourney/alert_service/service/AlertService.java`).
-- InfluxDB usage: `usage-service/src/main/java/com/leetjourney/usage_service/config/InfluxDBConfig.java` and writes/queries in `UsageService.java`.
+  - Topic `energy-usage`: produced by `ingestion-service` (`ingestion-service/src/main/java/com/thusithakit/ingestion_service/service/IngestionService.java`) and consumed by `usage-service` (`usage-service/src/main/java/com/thusithakit/usage_service/service/UsageService.java`).
+  - Topic `energy-alerts`: produced by `usage-service` (aggregation/threshold logic) and consumed by `alert-service` (`alert-service/src/main/java/com/thusithakit/alert_service/service/AlertService.java`).
+- InfluxDB usage: `usage-service/src/main/java/com/thusithakit/usage_service/config/InfluxDBConfig.java` and writes/queries in `UsageService.java`.
 - MySQL: DB name `home_energy_tracker`, init in `docker/mysql/init.sql`; JDBC URLs appear in services' `src/main/resources/application.properties`. Keycloak uses a separate MySQL instance in Compose (`keycloak-db`).
 
 API Gateway (routing & security)
-- Gateway port **9000**; routes under `/api/v1/...` proxy to localhost backends with **circuit breakers** (see `api-gateway/src/main/java/com/leetjourney/api_gateway/route/*.java`).
+- Gateway port **9000**; routes under `/api/v1/...` proxy to localhost backends with **circuit breakers** (see `api-gateway/src/main/java/com/thusithakit/api_gateway/route/*.java`).
 - **OAuth2 Resource Server** (JWT): most paths require a valid token; **permitAll** list is in `api-gateway/src/main/resources/application.properties` (`security.excluded.urls`—actuator, swagger, api-docs). **`/api/v1/ingestion/**` is not excluded**—calls through the gateway typically need a **Bearer** token from Keycloak (`http://localhost:8091`). For quick unauthenticated pipeline tests, **POST directly to ingestion-service on port 8082** (service has no Spring Security).
 
 Observability & useful endpoints
@@ -58,7 +58,7 @@ Agent runbook checks (short)
 
 Project-specific conventions
 - Maven wrapper present in each service — prefer `./mvnw`.
-- Package names use underscores: e.g. `com.leetjourney.ingestion_service` (see each service `HELP.md` which documents this change).
+- Package names use underscores: e.g. `com.thusithakit.ingestion_service` (see each service `HELP.md` which documents this change).
 - Kafka bootstrap server for **host-based** service runs: **`localhost:9094`** (external advertised listener in `docker-compose.yml`). Services' `application.properties` should use this when not on the Docker network.
 - JSON type mapping for Kafka consumers is configured in service properties (look for `spring.kafka.consumer.properties.spring.json.type.mapping`).
 
@@ -66,13 +66,13 @@ Files to reference when automating (examples)
 - `docker-compose.yml` — infra and envs
 - `docker/mysql/init.sql` — DB bootstrap
 - `docker/prometheus/prometheus.yml` — Prometheus scrape targets
-- `ingestion-service/src/main/java/com/leetjourney/ingestion_service/controller/IngestionController.java`
-- `ingestion-service/src/main/java/com/leetjourney/ingestion_service/service/IngestionService.java`
-- `usage-service/src/main/java/com/leetjourney/usage_service/service/UsageService.java`
-- `usage-service/src/main/java/com/leetjourney/usage_service/config/InfluxDBConfig.java`
-- `alert-service/src/main/java/com/leetjourney/alert_service/service/AlertService.java`
-- `api-gateway/src/main/java/com/leetjourney/api_gateway/route/UserServiceRoutes.java` (and sibling route classes)
-- `api-gateway/src/main/java/com/leetjourney/api_gateway/config/SecurityConfig.java`
+- `ingestion-service/src/main/java/com/thusithakit/ingestion_service/controller/IngestionController.java`
+- `ingestion-service/src/main/java/com/thusithakit/ingestion_service/service/IngestionService.java`
+- `usage-service/src/main/java/com/thusithakit/usage_service/service/UsageService.java`
+- `usage-service/src/main/java/com/thusithakit/usage_service/config/InfluxDBConfig.java`
+- `alert-service/src/main/java/com/thusithakit/alert_service/service/AlertService.java`
+- `api-gateway/src/main/java/com/thusithakit/api_gateway/route/UserServiceRoutes.java` (and sibling route classes)
+- `api-gateway/src/main/java/com/thusithakit/api_gateway/config/SecurityConfig.java`
 
 Notes
 - Java version: use **JDK 21** (declared in each module POM).

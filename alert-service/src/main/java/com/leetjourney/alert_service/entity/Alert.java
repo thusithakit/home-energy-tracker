@@ -1,4 +1,4 @@
-package com.leetjourney.alert_service.entity;
+package com.thusithakit.alert_service.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

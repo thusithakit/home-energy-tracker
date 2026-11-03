@@ -29,8 +29,8 @@ public class OpenApiConfig {
 
     private static Contact getContact() {
         Contact contact = new Contact();
-        contact.setUrl("https://leetjourney.com");
-        contact.setEmail("leetjourney@gmail.com");
+        contact.setUrl("https://thusithakit.com");
+        contact.setEmail("thusithakit@gmail.com");
         return contact;
     }
 }

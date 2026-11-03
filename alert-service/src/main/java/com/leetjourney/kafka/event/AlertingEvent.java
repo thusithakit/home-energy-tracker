@@ -1,4 +1,4 @@
-package com.leetjourney.kafka.event;
+package com.thusithakit.kafka.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

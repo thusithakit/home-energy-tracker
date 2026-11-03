@@ -1,7 +1,7 @@
-package com.leetjourney.insight_service.controller;
+package com.thusithakit.insight_service.controller;
 
-import com.leetjourney.insight_service.dto.InsightDto;
-import com.leetjourney.insight_service.service.InsightService;
+import com.thusithakit.insight_service.dto.InsightDto;
+import com.thusithakit.insight_service.service.InsightService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

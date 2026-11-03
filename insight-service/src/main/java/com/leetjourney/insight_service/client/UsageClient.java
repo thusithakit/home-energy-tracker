@@ -1,6 +1,6 @@
-package com.leetjourney.insight_service.client;
+package com.thusithakit.insight_service.client;
 
-import com.leetjourney.insight_service.dto.UsageDto;
+import com.thusithakit.insight_service.dto.UsageDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;

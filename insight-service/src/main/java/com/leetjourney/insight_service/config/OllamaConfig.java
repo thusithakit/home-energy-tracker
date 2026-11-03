@@ -1,4 +1,4 @@
-package com.leetjourney.insight_service.config;
+package com.thusithakit.insight_service.config;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.context.annotation.Bean;

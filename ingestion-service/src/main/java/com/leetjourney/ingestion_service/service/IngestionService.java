@@ -1,7 +1,7 @@
-package com.leetjourney.ingestion_service.service;
+package com.thusithakit.ingestion_service.service;
 
-import com.leetjourney.ingestion_service.dto.EnergyUsageDto;
-import com.leetjourney.kafka.event.EnergyUsageEvent;
+import com.thusithakit.ingestion_service.dto.EnergyUsageDto;
+import com.thusithakit.kafka.event.EnergyUsageEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package com.leetjourney.alert_service.service;
+package com.thusithakit.alert_service.service;
 
-import com.leetjourney.kafka.event.AlertingEvent;
+import com.thusithakit.kafka.event.AlertingEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;

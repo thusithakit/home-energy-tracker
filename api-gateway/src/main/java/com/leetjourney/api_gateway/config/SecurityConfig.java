@@ -1,4 +1,4 @@
-package com.leetjourney.api_gateway.config;
+package com.thusithakit.api_gateway.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.leetjourney.user_service.entity;
+package com.thusithakit.user_service.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

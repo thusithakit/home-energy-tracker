@@ -1,4 +1,4 @@
-package com.leetjourney.usage_service.model;
+package com.thusithakit.usage_service.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

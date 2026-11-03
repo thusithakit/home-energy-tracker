@@ -1,4 +1,4 @@
-package com.leetjourney.api_gateway.route;
+package com.thusithakit.api_gateway.route;
 
 import org.springframework.cloud.gateway.server.mvc.filter.CircuitBreakerFilterFunctions;
 import org.springframework.context.annotation.Bean;

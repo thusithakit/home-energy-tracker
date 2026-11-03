@@ -1,6 +1,6 @@
-package com.leetjourney.usage_service.client;
+package com.thusithakit.usage_service.client;
 
-import com.leetjourney.usage_service.dto.DeviceDto;
+import com.thusithakit.usage_service.dto.DeviceDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
