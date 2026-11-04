@@ -14,7 +14,7 @@ services:
       - db-data:/var/log/mysql
 
   kafka:
-    container_name: kafka
+    container_name: kafka-energy
     image: apache/kafka:latest
     ports:
       - "9092:9092"  # Internal listener (Docker network)
